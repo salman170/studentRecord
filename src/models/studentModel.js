@@ -7,7 +7,7 @@ const studentSchema = new mongoose.Schema({
     subjectMarks: [{
         subject: { type: String, require: true, trim: true },
         marks: { type: Number, required: true, trim: true, },
-        _id:false
+        _id: false
     }],
     teacherId: { type: ObjectId, ref: "Teacher", required: true, trim: true, },
     deletedAt: { type: Date },

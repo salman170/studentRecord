@@ -9,7 +9,7 @@ const register = async (req, res) => {
     try{
         let data = req.body
 
-        if (!isValidRequestBody(data)) { return res.status(400).send({ status: false, message: 'No data provided for user' }) }
+        if (!isValidRequestBody(data)) { return res.status(400).send({ status: false, message: 'No data provided for user, Please provide the data for entry.' }) }
 
         let { fname, lname, email, phone, password } = data
 
@@ -67,18 +67,18 @@ const teacherLogin = async function (req, res) {
         if (password.trim().length < 8 || password.trim().length > 15) { return res.status(400).send({ status: false, message: 'Password should be of minimum 8 characters & maximum 15 characters' }) }
 
         const mailMatch = await teacherModel.findOne({ email: email }).select({ _id: 1, password: 1 })
-        if (!mailMatch) return res.status(400).send({ status: false, message: `No data found with this ${email} email.` })
+        if (!mailMatch) return res.status(400).send({ status: false, message: `Credential are incorrect. No data found` })
 
         const teacherId = mailMatch._id;
         checkPassword = mailMatch.password;
 
         const passMatch = await bcrypt.compare(password, checkPassword)
 
-        if (!mailMatch || !passMatch) return res.status(400).send({ status: false, message: "Password is incorrect." })
+        if (!passMatch) return res.status(400).send({ status: false, message: "Credential are incorrect. No data found" })
 
         const token = jwt.sign({
             teacherId : teacherId.toString(), iat: new Date().getTime() / 1000,
-        }, "FunctionUp Group No 26", { expiresIn: "2h" });
+        }, "FunctionUp Assignment", { expiresIn: "2h" });
 
         res.setHeader("authorization", "token");
         return res.status(200).send({ status: true, message: "You have successfully logged in", data: { teacherId: teacherId, token: token } })

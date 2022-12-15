@@ -7,7 +7,7 @@
     "nodemon": "^2.0.20"
   },
   "name": "studentrecord",
-  "description": "",
+  "description": "This project will help teacher to store the student data very efficient.",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

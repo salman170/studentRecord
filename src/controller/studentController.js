@@ -150,7 +150,6 @@ const updateStudent = async (req, res) => {
         let student = await studentModel.findOne({ uniqueId: uniqueId, isDeleted: false })
 
         if (!student) return res.status(404).send({ status: false, message: "No student data found." })
-        console.log(student.teacherId, req.teacherId)
 
         if (student.teacherId.toString() !== req.teacherId) return res.status(403).send({ status: false, message: "Unauthorized access!" });
 
@@ -158,7 +157,7 @@ const updateStudent = async (req, res) => {
 
         if (Object.keys(data).length == 0) return res.status(400).send({ status: false, message: "please enter require data to update student details." })
 
-        const { name, subject, marks, ...rest } = data
+        const { name, subject, ...rest } = data
 
         if (Object.keys(rest).length > 0) return res.status(400).send({ status: false, message: `You can not update these:-( ${Object.keys(rest)} ) data ` })
 
@@ -191,7 +190,6 @@ const deleteStudent = async (req, res) => {
         let student = await studentModel.findOne({ uniqueId: uniqueId, isDeleted: false })
 
         if (!student) return res.status(404).send({ status: false, message: "No student data found." })
-        console.log(student.teacherId, req.teacherId)
 
         if (student.teacherId.toString() !== req.teacherId) return res.status(403).send({ status: false, message: "Unauthorized access!" });
 

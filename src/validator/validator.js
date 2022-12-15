@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 
 const isValid = function (value) {
-    if (typeof (value) === undefined || typeof (value) === null) { return false }
-    if (typeof (value) === "string" && value.trim().length == 0) { return false }
-    if (typeof (value) === "number" && value.toString().trim().length == 0) { return false }
-    if (typeof (value) === "object" && Object.keys(value).length == 0) { return false }
+    if (typeof (value) === undefined || typeof (value) === null)  return false 
+    if (typeof (value) === "string" && value.trim().length == 0)  return false 
+    if (typeof (value) === "number" && value.toString().trim().length == 0)  return false 
+    if (typeof (value) === "object" && Object.keys(value).length == 0)  return false 
     return true
 }
 
@@ -35,31 +35,6 @@ const alphaNumericValid = (value) => {
     let alphaRegex = /^[a-zA-Z0-9-_ ]+$/;
     if (alphaRegex.test(value)) return true; // /^[- a-zA-Z'\.,][^/]{1,150}/ allows every things
   }
-
-/*
-bool ValidationOfRomanNumerals(string str)
-{
- 
-    // Regex to check valid
-    // ROMAN NUMERAL .
-    const regex pattern("^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$");
- 
-    // If the str
-    // is empty return false
-    if (str.empty()) {
-        return false;
-    }
- 
-    // Return true if the str
-    // matched the ReGex
-    if (regex_match(str, pattern)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-*/
 
 
 
